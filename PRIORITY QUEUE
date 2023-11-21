@@ -1,0 +1,104 @@
+#include <stdio.h>
+int i,size,front,rear;
+void deque();
+void enque();
+void display();
+struct pq{
+    int item,priority;
+}
+a[20];
+void display()
+{
+    if(front==-1)
+    {
+        printf("THE QUE IS EMPTY\n");
+    }
+    else
+    {
+    for(i=front;i<=rear;i++)
+    {
+        printf("%d",a[i].item);
+    }
+    }
+}
+void main()
+{   int choice,n,p;
+    printf("ENTER THE SIZE OF THE ARRAY\n");
+    scanf("%d",&size);
+    do {
+        printf("ENTER YOUR OPTIONS\n");
+    printf("1-ENQUE\n2-DEQUE\n3-DISPLAY\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:printf("ENTER THE NUBER AND PRIORITY OF THE NUMBER\n");
+               scanf("%d%d",&n,&p);
+               enque(n,p);
+               break;
+        case 2:deque();
+               break;
+        case 3:display();
+               break;
+        
+              
+        
+    }          
+}while(choice!=4);
+}
+void enque(int number,int PRIORITY)
+{   int loc;
+    if(front==-1)
+    {
+        front=0;
+        rear=0;
+        a[rear].item=number;
+        a[rear].priority=PRIORITY;
+        
+    }
+    else if(front=0&&rear==size-1)
+    {
+        printf("THE QUE IS FULL\n");
+        
+    }
+    else if(rear=size-1)
+    {   for(i=0;i<=rear;i++)
+      {
+        a[i-1]=a[i];
+        front=front-1;
+        rear=rear-1;
+      } 
+      for(i=rear;i>=front;i--)
+      {
+         if(a[i].priority<PRIORITY)
+         {
+             break;
+         }
+      }
+      loc=i+1;
+      for(i=rear;i>=loc;i--)
+      {
+          a[i+1]=a[i];
+          a[loc].item;
+      }
+      
+    }
+}
+void deque()
+{
+    if(front==-1)
+    {
+        printf("THE QUEUE IS EMPTY\n");
+    }
+    else if(front=rear)
+    {
+        printf("%dis dequed\n",a[front].item );
+        front=-1;
+        rear=-1;
+    }
+    else
+    { 
+         
+           printf("%dis dequed\n",a[front].item );
+          front=(front+1)%10;
+    }
+    }

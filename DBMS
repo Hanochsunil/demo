@@ -1,0 +1,906 @@
+Microsoft Windows [Version 10.0.22631.3880]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\admin>sqlplus
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Aug 9 09:20:23 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL> select * from employee_csb16;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER
+
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA
+
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC
+
+E06        SIXMAN                    ANALYST              M                  28
+     59000 01-OCT-23 P03        CHN
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE
+
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG
+
+
+8 rows selected.
+
+SQL>  insert into employee_csb16 values('E10','AXXA','ANALYST','F',2
+3,35000,TO_DATE('2024-10-01','YYYY-MM-DD'),NULL,'SHK');
+
+1 row created.
+
+SQL>  select * from employee_csb16;
+
+ENO        ENAME                     DESIGNATION          SEX          AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E01        ONEMAN                    DEVELOPER            M
+    25
+     85000 01-JAN-24 P01        GER
+
+E02        TWOMAN                    DEVELOPER            M
+    26
+     95000 01-JAN-24 P02        IND
+
+E03        THREEMAN                  ANALYST              F
+    20
+     18800 01-JAN-16 P03        GBR
+
+
+ENO        ENAME                     DESIGNATION          SEX          AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E04        FOURMAN                   SALESMAN             M
+    30
+     17000 10-MAR-19 P04        USA
+
+E05        FIVEX                     SALESMAN             F
+    27
+     45000 01-OCT-24 P04        NYC
+
+E06        SIXMAN                    ANALYST              M
+    28
+     59000 01-OCT-23 P03        CHN
+
+
+ENO        ENAME                     DESIGNATION          SEX          AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E07        SEVENMAN                  MANAGER              M
+    29
+     60000 01-OCT-20 P02        UAE
+
+E08        EIGHTMAN                  MANAGER              M
+    27
+     98000 01-OCT-15 P01        HKG
+
+E10        AXXA                      ANALYST              F
+    23
+     35000 01-OCT-24            SHK
+
+
+SQL>           .
+SQL>  insert into employee_csb16 values('E10','AXXA','ANALYST','F',2
+  2
+SQL> insert into employee_csb16 values('E09','NINEMAN','MANAGER','M',27,98000,TO_DATE('2016-10-01','YYYY-MM-DD'),'P01','ISL');
+
+1 row created.
+
+SQL>  select * from employee_CSB_50 where DATE_OF_JOIN<TO_DATE('2016-09-01','YYYY-MM-DD');
+
+ENO        ENAME          DESIGNATION  SEX          AGE     SALARY DATE_OF_J
+---------- -------------- ------------ ----- ---------- ---------- ---------
+PNO        CITY
+---------- ----------
+E01        ONEX           MANAGER      M             47     115000 01-MAR-16
+P01        NYC
+
+E04        FOURX          DEVELOPER    M             25      85000 01-MAR-15
+P04        GER
+
+E08        EIGHTX         DEVELOPER    F             29     105000 01-OCT-15
+P03        IND
+
+
+SQL> Select * from employee_csb16 where DATE_OF_JOIN between TO_DATE('2016-06-30','YYYY-MM-DD') and  TO_DATE('2017-07-01','YYYY-MM-DD');
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL
+
+
+SQL> select max(salary) from employee_csb16
+  2
+SQL> select max(salary) from employee_csb16;
+
+MAX(SALARY)
+-----------
+      98000
+
+SQL> select min(salary) from employee_csb16;
+
+MIN(SALARY)
+-----------
+      17000
+
+SQL> select sum(salary) from employee_csb16;
+
+SUM(SALARY)
+-----------
+     610800
+
+SQL> select avg(salary) from employee_csb16;
+
+AVG(SALARY)
+-----------
+      61080
+
+SQL> select count(ENO) from employee_csb16;
+
+COUNT(ENO)
+----------
+        10
+
+SQL> select max(salary) from employee_csb16 where DESIGNATION='SALESMAN';
+
+MAX(SALARY)
+-----------
+      45000
+
+SQL> select sum(salary) from employee_csb16 where DESIGNATION='MANAGER';
+
+SUM(SALARY)
+-----------
+     256000
+
+SQL> select max(age) from employee_csb16;
+
+  MAX(AGE)
+----------
+        30
+
+SQL>  select * from employee_csb16;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER
+
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA
+
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC
+
+E06        SIXMAN                    ANALYST              M                  28
+     59000 01-OCT-23 P03        CHN
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE
+
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG
+
+E10        AXXA                      ANALYST              F                  23
+     35000 01-OCT-24            SHK
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL
+
+
+10 rows selected.
+
+SQL> select min(age) from employee_csb16;
+
+  MIN(AGE)
+----------
+        20
+
+SQL> select * from employee_cs16 order by ENAME;
+select * from employee_cs16 order by ENAME
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>  select * from employee_csb16 order by ENAME;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E10        AXXA                      ANALYST              F                  23
+     35000 01-OCT-24            SHK
+
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG
+
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA
+
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL
+
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE
+
+E06        SIXMAN                    ANALYST              M                  28
+     59000 01-OCT-23 P03        CHN
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND
+
+
+10 rows selected.
+
+SQL> select * from employee_csb16 order by SALARY desc;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG
+
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL
+
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER
+
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE
+
+E06        SIXMAN                    ANALYST              M                  28
+     59000 01-OCT-23 P03        CHN
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC
+
+E10        AXXA                      ANALYST              F                  23
+     35000 01-OCT-24            SHK
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA
+
+
+10 rows selected.
+
+SQL> +
+SP2-0042: unknown command "+" - rest of line ignored.
+SQL> select PNAME,count(ENO) from employee_csb16 e,project_csb16 p where e.PNO=p.PNO group by PNAME;
+
+PNAME                COUNT(ENO)
+-------------------- ----------
+PROJECT A                     3
+PROJECT B                     2
+PROJECT C                     2
+PROJECT D                     2
+
+SQL> select ENAME,min(salary),max(salary),avg(salary) from employee_csb16 p where e.PNO=p.PNO and p.PNO='P01' group by ENAME,SALARY having avg(salar
+y)>1000
+  2
+SQL>
+SQL> SQL> select ENAME,min(salary),max(salary),avg(salary) from employee_csb16 p where e.PNO=p.PNO and p.PNO='P01' group by ENAME,SALARY having avg(salar
+SP2-0734: unknown command beginning "SQL> selec..." - rest of line ignored.
+SQL> y)>1000
+SP2-0042: unknown command "y)>1000" - rest of line ignored.
+SQL> select ENAME,min(salary),max(salary),avg(salary) from employee_csb16 p where e.PNO=p.PNO and p.PNO='P01' group by ENAME,SALARY having avg(salar
+y)>1000;
+select ENAME,min(salary),max(salary),avg(salary) from employee_csb16 p where e.PNO=p.PNO and p.PNO='P01' group by ENAME,SALARY having avg(salary)>1000
+                                                                             *
+ERROR at line 1:
+ORA-00904: "E"."PNO": invalid identifier
+
+
+SQL> select ename,min(SALARY),max(SALARY),avg(SALARY) from employee_CSB_50 e,project_CSB_50 p where e.PNO=p.PNO and p.pno='P01' group by ename,salar
+
+  2  y having avg(SALARY) >1000;
+y having avg(SALARY) >1000
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SQL> select ename,min(SALARY),max(SALARY),avg(SALARY) from employee_CSB_50 e,project_CSB_50 p where e.PNO=p.PNO and p.pno='P01' group by ename,salar
+SP2-0734: unknown command beginning "SQL> selec..." - rest of line ignored.
+SQL> y having avg(SALARY) >1000;
+SP2-0734: unknown command beginning "y having a..." - rest of line ignored.
+SQL> select ename,min(SALARY),max(SALARY),avg(SALARY) from employee_csb16 e,project_csb16 p where e.PNO=p.PNO and p.pno='P01' group by ename,salary
+having avg(SALARY)>1000;
+
+ENAME                     MIN(SALARY) MAX(SALARY) AVG(SALARY)
+------------------------- ----------- ----------- -----------
+EIGHTMAN                        98000       98000       98000
+NINEMAN                         98000       98000       98000
+ONEMAN                          85000       85000       85000
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL>  select * from employee_csb16;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER
+
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA
+
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC
+
+E06        SIXMAN                    ANALYST              M                  28
+     59000 01-OCT-23 P03        CHN
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE
+
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG
+
+E10        AXXA                      ANALYST              F                  23
+     35000 01-OCT-24            SHK
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY
+---------- --------- ---------- ----------
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL
+
+
+10 rows selected.
+
+SQL> select * from employee_csb16 e left outer join project_csb16 p on e.pno=p.pno;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL        P01
+PROJECT A                   101
+
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG        P01
+PROJECT A                   101
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER        P01
+PROJECT A                   101
+
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE        P02
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+PROJECT B                   102
+
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND        P02
+PROJECT B                   102
+
+E06        SIXMAN                    ANALYST              M                  28
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+     59000 01-OCT-23 P03        CHN        P03
+PROJECT C                   103
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR        P03
+PROJECT C                   103
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC        P04
+PROJECT D                   104
+
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA        P04
+PROJECT D                   104
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+
+E10        AXXA                      ANALYST              F                  23
+     35000 01-OCT-24            SHK
+
+
+
+10 rows selected.
+
+SQL> select * from employee_csb16 e right outer join project_csb16 p on e.pno=p.pno;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER        P01
+PROJECT A                   101
+
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND        P02
+PROJECT B                   102
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR        P03
+PROJECT C                   103
+
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA        P04
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+PROJECT D                   104
+
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC        P04
+PROJECT D                   104
+
+E06        SIXMAN                    ANALYST              M                  28
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+     59000 01-OCT-23 P03        CHN        P03
+PROJECT C                   103
+
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE        P02
+PROJECT B                   102
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG        P01
+PROJECT A                   101
+
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL        P01
+PROJECT A                   101
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+
+
+9 rows selected.
+
+SQL> select * from employee_csb16 full join project_csb16 p on e.pno=p.pno;
+select * from employee_csb16 full join project_csb16 p on e.pno=p.pno
+                                                          *
+ERROR at line 1:
+ORA-00904: "E"."PNO": invalid identifier
+
+
+SQL> select * from employee_csb16 e full outer join project_csb16 p on e.pno=p.pno;
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+E09        NINEMAN                   MANAGER              M                  27
+     98000 01-OCT-16 P01        ISL        P01
+PROJECT A                   101
+
+E08        EIGHTMAN                  MANAGER              M                  27
+     98000 01-OCT-15 P01        HKG        P01
+PROJECT A                   101
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+
+E01        ONEMAN                    DEVELOPER            M                  25
+     85000 01-JAN-24 P01        GER        P01
+PROJECT A                   101
+
+E07        SEVENMAN                  MANAGER              M                  29
+     60000 01-OCT-20 P02        UAE        P02
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+PROJECT B                   102
+
+E02        TWOMAN                    DEVELOPER            M                  26
+     95000 01-JAN-24 P02        IND        P02
+PROJECT B                   102
+
+E06        SIXMAN                    ANALYST              M                  28
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+     59000 01-OCT-23 P03        CHN        P03
+PROJECT C                   103
+
+E03        THREEMAN                  ANALYST              F                  20
+     18800 01-JAN-16 P03        GBR        P03
+PROJECT C                   103
+
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+E05        FIVEX                     SALESMAN             F                  27
+     45000 01-OCT-24 P04        NYC        P04
+PROJECT D                   104
+
+E04        FOURMAN                   SALESMAN             M                  30
+     17000 10-MAR-19 P04        USA        P04
+PROJECT D                   104
+
+ENO        ENAME                     DESIGNATION          SEX               AGE
+---------- ------------------------- -------------------- ---------- ----------
+    SALARY DATE_OF_J PNO        CITY       PNO
+---------- --------- ---------- ---------- --------------------
+PNAME                       DNO
+-------------------- ----------
+
+E10        AXXA                      ANALYST              F                  23
+     35000 01-OCT-24            SHK
+
+
+
+10 rows selected.
+
+SQL> select * from employee_csb16 natural join project_csb16;
+
+PNO                  ENO        ENAME                     DESIGNATION
+-------------------- ---------- ------------------------- --------------------
+SEX               AGE     SALARY DATE_OF_J CITY       PNAME
+---------- ---------- ---------- --------- ---------- --------------------
+       DNO
+----------
+P01                  E01        ONEMAN                    DEVELOPER
+M                  25      85000 01-JAN-24 GER        PROJECT A
+       101
+
+P02                  E02        TWOMAN                    DEVELOPER
+M                  26      95000 01-JAN-24 IND        PROJECT B
+       102
+
+PNO                  ENO        ENAME                     DESIGNATION
+-------------------- ---------- ------------------------- --------------------
+SEX               AGE     SALARY DATE_OF_J CITY       PNAME
+---------- ---------- ---------- --------- ---------- --------------------
+       DNO
+----------
+
+P03                  E03        THREEMAN                  ANALYST
+F                  20      18800 01-JAN-16 GBR        PROJECT C
+       103
+
+P04                  E04        FOURMAN                   SALESMAN
+M                  30      17000 10-MAR-19 USA        PROJECT D
+
+PNO                  ENO        ENAME                     DESIGNATION
+-------------------- ---------- ------------------------- --------------------
+SEX               AGE     SALARY DATE_OF_J CITY       PNAME
+---------- ---------- ---------- --------- ---------- --------------------
+       DNO
+----------
+       104
+
+P04                  E05        FIVEX                     SALESMAN
+F                  27      45000 01-OCT-24 NYC        PROJECT D
+       104
+
+P03                  E06        SIXMAN                    ANALYST
+
+PNO                  ENO        ENAME                     DESIGNATION
+-------------------- ---------- ------------------------- --------------------
+SEX               AGE     SALARY DATE_OF_J CITY       PNAME
+---------- ---------- ---------- --------- ---------- --------------------
+       DNO
+----------
+M                  28      59000 01-OCT-23 CHN        PROJECT C
+       103
+
+P02                  E07        SEVENMAN                  MANAGER
+M                  29      60000 01-OCT-20 UAE        PROJECT B
+       102
+
+
+PNO                  ENO        ENAME                     DESIGNATION
+-------------------- ---------- ------------------------- --------------------
+SEX               AGE     SALARY DATE_OF_J CITY       PNAME
+---------- ---------- ---------- --------- ---------- --------------------
+       DNO
+----------
+P01                  E08        EIGHTMAN                  MANAGER
+M                  27      98000 01-OCT-15 HKG        PROJECT A
+       101
+
+P01                  E09        NINEMAN                   MANAGER
+M                  27      98000 01-OCT-16 ISL        PROJECT A
+       101
+
+PNO                  ENO        ENAME                     DESIGNATION
+-------------------- ---------- ------------------------- --------------------
+SEX               AGE     SALARY DATE_OF_J CITY       PNAME
+---------- ---------- ---------- --------- ---------- --------------------
+       DNO
+----------
+
+
+9 rows selected.
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
